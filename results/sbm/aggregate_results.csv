@@ -1,4 +1,4 @@
-k, disk_time, disk_size, disk_symdiff, mem_time, mem_size, mem_symdiff
+k,disk_time,disk_size,disk_symdiff,mem_time,mem_size,mem_symdiff
 10, 946, 1043, 1840, 57, 1043, 1840
 20, 1165, 1031, 1924, 86, 1031, 1924
 30, 1253, 1034, 1968, 115, 1034, 1968

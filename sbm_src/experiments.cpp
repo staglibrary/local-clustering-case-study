@@ -7,6 +7,7 @@
 #include <stag/cluster.h>
 #include <stag/graphio.h>
 
+#include "generate.h"
 #include "experiments.h"
 
 /**
@@ -134,7 +135,12 @@ void compare_local_clustering(stag_int num_clusters,
                               std::ofstream* detail_file,
                               std::ofstream* aggregate_file,
                               stag_int& experiment_runid) {
-  std::string adj_filename = "../data/k" + std::to_string(num_clusters) + ".al";
+  std::string adj_filename = "../data/sbm/k" + std::to_string(num_clusters) + ".al";
+
+  // Begin by shuffling the adjacency. This makes the comparison more fair since
+  // the target cluster is not all in the same part of the file on disk.
+  std::string adj_shuffled_fname = "../data/sbm/k" + std::to_string(num_clusters) + "shuffled.al";
+  shuffle_adjacencylist(adj_filename, adj_shuffled_fname);
 
   // Store the results of all trials for aggregation afterwards.
   std::vector<ExperimentalResult> disk_results;
@@ -145,9 +151,9 @@ void compare_local_clustering(stag_int num_clusters,
   for (auto i = 0; i < num_trials; i++) {
     stag_int start_v = 1000 * i;
 
-    ExperimentalResult disk_res = evaluate_ondisk_clustering(adj_filename,
+    ExperimentalResult disk_res = evaluate_ondisk_clustering(adj_shuffled_fname,
                                                              start_v);
-    ExperimentalResult mem_res = evaluate_inmemory_clustering(adj_filename,
+    ExperimentalResult mem_res = evaluate_inmemory_clustering(adj_shuffled_fname,
                                                               start_v);
 
     // Save the results
@@ -174,8 +180,8 @@ void compare_local_clustering(stag_int num_clusters,
 
 void compare_all_graphs() {
   // Open the results files
-  std::string detailed_fname = "../results/results.csv";
-  std::string aggregate_fname = "../results/aggregate_results.csv";
+  std::string detailed_fname = "../results/sbm/results.csv";
+  std::string aggregate_fname = "../results/sbm/aggregate_results.csv";
   std::ofstream os_detail(detailed_fname);
   std::ofstream os_aggregate(aggregate_fname);
 
@@ -183,7 +189,7 @@ void compare_all_graphs() {
   os_detail << "id, k, disk_time, disk_size, disk_symdiff, mem_time, mem_size, mem_symdiff" << std::endl;
   os_aggregate << "k, disk_time, disk_size, disk_symdiff, mem_time, mem_size, mem_symdiff" << std::endl;
 
-  std::vector<stag_int> orders_of_magnitude = {10, 100, 1000, 10000};
+  std::vector<stag_int> orders_of_magnitude = {10, 100, 1000};
   std::vector<stag_int> ks;
   for (stag_int om : orders_of_magnitude) {
     for (stag_int i = 1; i < 10; i++) {

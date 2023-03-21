@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 3.22)
+project(local_clustering_examples)
+
+set(CMAKE_CXX_STANDARD 20)
+
+# Find and include the STAG library
+find_package(stag REQUIRED)
+message(STATUS "Found STAG!")
+include_directories(${STAG_INCLUDE_DIRS})
+
+# Define the executable for the SBM demo
+add_executable(sbm_example
+        sbm_src/main.cpp sbm_src/generate.cpp sbm_src/experiments.cpp sbm_src/experiments.h sbm_src/generate.h)
+target_link_libraries(sbm_example stag)
+
+# Define the executable for the next demo
+add_executable(data_example
+        src/main.cpp src/wikidata.h src/experiments.cpp src/experiments.h src/wikidata.cpp)
+target_link_libraries(data_example stag)
+
+
+# Copy the data to the release directory
+configure_file(data/wiki/wiki-topcats.al data/wiki/wiki-topcats.al COPYONLY)
+configure_file(data/wiki/wiki-topcats-page-names.txt data/wiki/wiki-topcats-page-names.txt COPYONLY)
+configure_file(data/wiki/wiki-topcats-categories.txt data/wiki/wiki-topcats-categories.txt COPYONLY)
