@@ -177,7 +177,7 @@ void shuffle_adjacencylist(std::string& fname, std::string& new_fname) {
 
   // Iterate through the adjacency list, creating an edgelist with the
   // permuted vertices.
-  std::string temp_fname = tmpnam(nullptr);
+  std::string temp_fname = stag::getTempFilename();
   adjacencylist_to_edgelist_with_perm(fname, temp_fname, permutation);
 
   // Now convert the edgelist back into an adjacencylist and we're done.

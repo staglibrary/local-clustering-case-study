@@ -8,7 +8,7 @@
 
 void local_clustering_experiment(stag_int starting_vertex, double target_vol) {
   // Create a graph from the wikipedia data
-  std::string wiki_filename = "data/wiki/wiki-topcats.al";
+  std::string wiki_filename = "../data/wiki/wiki-topcats.al";
   stag::AdjacencyListLocalGraph wiki_graph(wiki_filename);
 
   std::string start_name = get_page_name(starting_vertex);

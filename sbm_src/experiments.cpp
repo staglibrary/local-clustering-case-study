@@ -135,6 +135,8 @@ void compare_local_clustering(stag_int num_clusters,
                               std::ofstream* detail_file,
                               std::ofstream* aggregate_file,
                               stag_int& experiment_runid) {
+  std::cout << "Testing local clustering on graph with " << 1000 * num_clusters;
+  std::cout << " nodes." << std::endl;
   std::string adj_filename = "../data/sbm/k" + std::to_string(num_clusters) + ".al";
 
   // Begin by shuffling the adjacency. This makes the comparison more fair since
@@ -176,6 +178,14 @@ void compare_local_clustering(stag_int num_clusters,
   write_result(aggregate_file, &disk_agg_res);
   write_result(aggregate_file, &mem_agg_res);
   *aggregate_file << std::endl;
+
+  // Write the result to stdout.
+  std::cout << "Average time (over " << num_trials << " trials) with ";
+  std::cout << "AdjacencyListLocalGraph: " << disk_agg_res.time << " ms.";
+  std::cout << std::endl;
+  std::cout << "Average time (over " << num_trials << " trials) with ";
+  std::cout << "Graph: " << mem_agg_res.time << " ms.";
+  std::cout << std::endl << std::endl;
 }
 
 void compare_all_graphs() {

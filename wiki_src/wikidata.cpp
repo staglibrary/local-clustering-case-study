@@ -44,7 +44,7 @@ stag_int goto_next_content_line(std::ifstream* ifs, std::streampos* eof) {
 
 std::string get_page_name(stag_int v) {
   // We will find the page name in the wiki-topcats-page-names.txt file.
-  std::string filename = "data/wiki/wiki-topcats-page-names.txt";
+  std::string filename = "../data/wiki/wiki-topcats-page-names.txt";
   std::ifstream ifs(filename);
   if (!ifs.is_open()) throw std::runtime_error("Couldn't open page name file.");
 

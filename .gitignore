@@ -39,3 +39,5 @@
 **/cmake-build-release
 **/cmake-build-debug-wsl
 **/cmake-build-release-wsl
+**/sbm_build
+**/wiki_build

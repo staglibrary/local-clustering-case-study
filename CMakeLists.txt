@@ -17,9 +17,3 @@ target_link_libraries(sbm_example stag)
 add_executable(wiki_example
         wiki_src/main.cpp wiki_src/wikidata.h wiki_src/experiments.cpp wiki_src/experiments.h wiki_src/wikidata.cpp)
 target_link_libraries(wiki_example stag)
-
-
-# Copy the data to the release directory
-configure_file(data/wiki/wiki-topcats.al data/wiki/wiki-topcats.al COPYONLY)
-configure_file(data/wiki/wiki-topcats-page-names.txt data/wiki/wiki-topcats-page-names.txt COPYONLY)
-configure_file(data/wiki/wiki-topcats-categories.txt data/wiki/wiki-topcats-categories.txt COPYONLY)
