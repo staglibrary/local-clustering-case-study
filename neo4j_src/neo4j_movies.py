@@ -3,6 +3,7 @@ A demonstration of local clustering on a neo4j database.
 """
 import argparse
 import os
+import sys
 
 import stag.neo4j
 import stag.cluster
@@ -37,6 +38,7 @@ def main():
         except KeyError:
             print("Couldn't find neo4j user. Try setting the NEO4J_USER environment"
                   " variable.")
+            return 1
 
     uri = args.uri
     if uri is None:
@@ -45,6 +47,7 @@ def main():
         except KeyError:
             print("Couldn't find neo4j uri. Try setting the NEO4J_URI environment"
                   " variable.")
+            return 1
 
     password = args.password
     if password is None:
@@ -53,6 +56,7 @@ def main():
         except KeyError:
             print("Couldn't find neo4j password. Try setting the NEO4J_PASSWORD environment"
                   " variable.")
+            return 1
 
     # Create the graph object
     g = stag.neo4j.Neo4jGraph(uri, user, password)
@@ -80,7 +84,9 @@ def main():
 
     # Tidy up the graph object to close the connection to the database
     g.__del__()
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    res = main()
+    sys.exit(res)
