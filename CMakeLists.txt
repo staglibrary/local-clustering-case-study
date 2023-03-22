@@ -14,9 +14,9 @@ add_executable(sbm_example
 target_link_libraries(sbm_example stag)
 
 # Define the executable for the next demo
-add_executable(data_example
-        src/main.cpp src/wikidata.h src/experiments.cpp src/experiments.h src/wikidata.cpp)
-target_link_libraries(data_example stag)
+add_executable(wiki_example
+        wiki_src/main.cpp wiki_src/wikidata.h wiki_src/experiments.cpp wiki_src/experiments.h wiki_src/wikidata.cpp)
+target_link_libraries(wiki_example stag)
 
 
 # Copy the data to the release directory

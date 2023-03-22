@@ -4,6 +4,6 @@
 /**
  * Perform the local clustering experiment on the wikipedia data.
  */
-void local_clustering_experiment(stag_int starting_vertex);
+void local_clustering_experiment(stag_int starting_vertex, double target_vol);
 
 #endif //LOCAL_CLUSTERING_EXAMPLES_EXPERIMENTS_H

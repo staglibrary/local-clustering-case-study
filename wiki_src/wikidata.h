@@ -14,11 +14,4 @@
  */
 std::string get_page_name(stag_int v);
 
-
-/**
- * Given the name of a wikipedia category, find the nodes which are in the
- * category.
- */
-std::vector<stag_int> get_gt_category(std::string& category_name);
-
 #endif //LOCAL_CLUSTERING_EXAMPLES_WIKIDATA_H
