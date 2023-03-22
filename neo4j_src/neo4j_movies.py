@@ -81,6 +81,8 @@ def main():
         elif 'Person' in labels:
             name = g.query_property(v_id, 'name')
             print(f"Person: {name}")
+    print()
+    print(f"Conductance: {stag.cluster.conductance(g, cluster)}")
 
     # Tidy up the graph object to close the connection to the database
     g.__del__()
