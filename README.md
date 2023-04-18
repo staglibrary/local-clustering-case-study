@@ -66,8 +66,7 @@ This will create a `wiki` directory containing the data.
 The data is also available from [here](http://snap.stanford.edu/data/wiki-topcats.html).
 
 If you download the data from SNAP, you should convert the edgelist file to
-an adjacency list, for example by using the `stag_edge2adj` tool provided with
-the STAG C++ library.
+an adjacency list, for example by using the `stag_edge2adj` tool [provided with the STAG C++ library](https://staglibrary.io/docs/cpp/stag-tools.html).
 
 ```bash
 stag_edge2adj wiki-topcats.txt wiki-topcats.al
